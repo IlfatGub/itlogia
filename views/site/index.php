@@ -7,6 +7,11 @@ use yii\helpers\Url;
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
+
+    <?php if(!$active):?>
+        <h2 class="alert alert-success text-center">Поздравялем! Вы полностью прошли обучение!</h2>
+    <?php endif ?>
+
     <?php if($all):?>
         <div class="body-content mt-4 mb-4">
             Уроки 
@@ -32,22 +37,4 @@ $this->title = 'My Yii Application';
     <?php else: ?>
         <h2 class="alert alert-success text-center">Вы полностью прошли обучение!</h2>
     <?php endif ?>
-
-
-    <?php if($passed):?>
-        <div class="body-content mt-4 text-muted">
-            Просмотренные уроки
-            <hr>
-            <div class="row">
-            <?php foreach($passed as $item){ ?>
-                <div class="col-lg-4">
-                    <h2><?=$item->name?></h2>
-                    <p><?=$item->_description?></p>
-                    <p><a class="btn btn-outline-secondary" href="<?= Url::toRoute(['/site/lesson', 'id' => $item->id]) ?>"> Перейти </a></p>
-                </div>
-            <?php }  ?>
-            </div>
-        </div>
-    <?php endif ?>
-
 </div>
