@@ -97,11 +97,13 @@ class SiteController extends Controller
 
         $active = Lesson::find()->where(['id' => $lesson->getPassedLesson()])->all(); // список не просмотренных  уроков
         $passed = Lesson::find()->where(['id' => $study->getUserLessonId()])->all(); // список просмотренных уроков
+        $all = Lesson::find()->where(['id' => $lesson->getLessonId()])->all(); // список просмотренных уроков
 
         return $this->render('index', 
             [
                 'active' => $active,
-                'passed' => $passed,
+                'passed' => $study->getUserLessonId(),
+                'all' => $all,
             ]
         );
     }
