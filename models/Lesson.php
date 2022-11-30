@@ -41,10 +41,16 @@ class Lesson extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * все опубликованные уроки
+     */
     public function getLessonId(){
         return self::find()->select(['id'])->where(['visible' => 1])->column();
     }
 
+    /**
+     * не просмотренные уроки
+     */
     public function getPassedLesson(){
         $study = new Study();
 
@@ -53,7 +59,6 @@ class Lesson extends \yii\db\ActiveRecord
 
         return array_diff($all_lesson, $passed_lesson); ;
     }
-
 
     /**
      * {@inheritdoc}
