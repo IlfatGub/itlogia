@@ -15,6 +15,9 @@ use Yii;
  */
 class Lesson extends \yii\db\ActiveRecord
 {
+
+    public $_description;
+
     /**
      * {@inheritdoc}
      */
@@ -23,6 +26,10 @@ class Lesson extends \yii\db\ActiveRecord
         return 'lesson';
     }
 
+    public function afterFind()
+    {
+        $this->_description = strlen($this->description) > 100 ? substr($this->description, 0, 100).' ...' : $this->description;
+    }
     /**
      * {@inheritdoc}
      */
