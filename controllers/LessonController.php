@@ -62,13 +62,7 @@ class LessonController extends Controller
 
     public function actionPassed($id){
         $lesson = new Lesson();
-        $old = $lesson->getPassedLesson();
-
-        print_r($id);
-        echo "<br>";
-
-        print_r($old);
-        echo "<br>";
+        $old = array_values($lesson->getPassedLesson());
 
         if(!$model = Study::findOne(['lesson_id' => $id, 'user_id' => Yii::$app->user->id])){
             $new = new Study();
@@ -80,15 +74,9 @@ class LessonController extends Controller
         }else{
             $model->delete();
         }
-
-        print_r(array_search($id, $old));
-        echo "<br>";
         $active_lesson =  $lesson->getPassedLesson();
-        print_r($active_lesson);
-        echo "<br>"; die();
 
-
-        if(array_key_exists(array_search($id, $old) + 1), $active_lesson)
+        // if(array_key_exists(array_search($id, $old) + 1), $active_lesson)
 
         if($active_lesson){
             $model = Lesson::findOne(array_shift($active_lesson));
