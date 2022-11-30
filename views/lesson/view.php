@@ -33,7 +33,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'description',
             'url:url',
-            'visible',
+            [
+                'label' => 'Visible',
+                'attribute' => 'visible',
+                'value' => function($model){
+                    return $model->visible == 1 ? 'Опубликован' : 'Скрыт';
+                },
+            ],
         ],
     ]) ?>
 
