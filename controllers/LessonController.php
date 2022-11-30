@@ -64,25 +64,38 @@ class LessonController extends Controller
         $lesson = new Lesson();
         $old = array_values($lesson->getPassedLesson());
 
-        if(!$model = Study::findOne(['lesson_id' => $id, 'user_id' => Yii::$app->user->id])){
+        if(Study::find()->where(['lesson_id' => $id, 'user_id' => Yii::$app->user->id])->exists() == false){
             $new = new Study();
             $new->lesson_id = $id;
             $new->user_id = Yii::$app->user->id;
             if($new->save()){
                 // return 'Просмотрен';
+            }else{
+                $error ='';
+                foreach ($this->errors as $key => $value) {
+                    $error .= '<br>'.$key.': '.$value[0];
+                }
+                return false;
             }
+        }
+
+        $active_lesson = $lesson->getPassedLesson();
+
+        $index = array_search($id, $old) + 1;
+
+
+        if(!$active_lesson)
+            return $this->redirect('/site/index');
+
+        if(array_key_exists($index, $old)){
+            $model = Lesson::findOne($old[$index]);
         }else{
-            $model->delete();
-        }
-        $active_lesson =  $lesson->getPassedLesson();
-
-        // if(array_key_exists(array_search($id, $old) + 1), $active_lesson)
-
-        if($active_lesson){
-            $model = Lesson::findOne(array_shift($active_lesson));
-            return $this->render('/site/lesson', ['model' => $model, 'message' => 'Вы успешно прошли урок '.Lesson::findOne($id)->name]);
+            if($active_lesson){
+                $model = Lesson::findOne(array_shift($active_lesson));
+            }
         }
 
+        return $this->render('/site/lesson', ['model' => $model, 'message' => 'Вы успешно прошли урок '.Lesson::findOne($id)->name]);
     }
 
     /**

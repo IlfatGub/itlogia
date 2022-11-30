@@ -8,20 +8,21 @@ $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
     <?php if($active):?>
-
         <div class="body-content mt-4 mb-4">
-            Active
+            Уроки 
             <hr class="bg-info">
             <div class="row">
             <?php foreach($active as $item){ ?>
                 <div class="col-lg-4">
                     <h2><?=$item->name?></h2>
-                    <p><?=$item->description?></p>
-                    <p><a class="btn btn-outline-secondary" href="<?= Url::toRoute(['site/lesson', 'id' => $item->id]) ?>"> Перейти </a></p>
+                    <p><?= $item->_description?></p>
+                    <p><a class="btn btn-outline-secondary" href="<?= Url::toRoute(['/site/lesson', 'id' => $item->id]) ?>"> Перейти </a></p>
                 </div>
             <?php }  ?>
             </div>
         </div>
+    <?php else: ?>
+        <h2 class="alert alert-success text-center">Вы полностью прошли обучение!</h2>
     <?php endif ?>
 
 
@@ -33,8 +34,8 @@ $this->title = 'My Yii Application';
             <?php foreach($passed as $item){ ?>
                 <div class="col-lg-4">
                     <h2><?=$item->name?></h2>
-                    <p><?=$item->description?></p>
-                    <p><a class="btn btn-outline-secondary" href="<?= Url::toRoute(['site/lesson', 'id' => $item->id]) ?>"> Перейти </a></p>
+                    <p><?=$item->_description?></p>
+                    <p><a class="btn btn-outline-secondary" href="<?= Url::toRoute(['/site/lesson', 'id' => $item->id]) ?>"> Перейти </a></p>
                 </div>
             <?php }  ?>
             </div>
