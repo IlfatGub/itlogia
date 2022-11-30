@@ -1,7 +1,6 @@
 <?php
 
 use yii\db\Migration;
-
 /**
  * Class m221129_145834_crfeate_user_table
  */
@@ -28,7 +27,6 @@ class m221129_145834_crfeate_user_table extends Migration
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
-            'role' => $this->integer()->notNull()->defaultValue(100),
         ], $tableOptions);
     }
 

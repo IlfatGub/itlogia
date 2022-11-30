@@ -21,9 +21,9 @@ class m221129_161855_create_lesson_table extends Migration
         $this->createTable('{{%lesson}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
-            'description' => $this->string()->notNull(),
+            'description' => $this->string(1000)->notNull(),
             'url' => $this->string()->notNull(),
-            'visible' => $this->string()->unique(),
+            'visible' => $this->string()->notNull(),
         ], $tableOptions);
     }
 
