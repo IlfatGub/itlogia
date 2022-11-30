@@ -6,6 +6,12 @@
     <br>
 </p>
 
+create DATABASE itlogia
+yii migrate
+yii migrate/up --migrationPath=@yii/rbac/migrations
+
+yii rbac/init
+
 Yii 2 Basic Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
 rapidly creating small projects.
 
