@@ -9,7 +9,11 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Lesson;
 use app\models\SignupForm;
+use app\models\Study;
+use Codeception\Stub as CodeceptionStub;
+use Codeception\Util\Stub;
 
 class SiteController extends Controller
 {
@@ -79,7 +83,26 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $lesson = new Lesson();
+        $study = new Study();
+
+        $active = Lesson::find()->where(['id' => $lesson->getPassedLesson()])->all(); // список не просмотренных  уроков
+        $passed = Lesson::find()->where(['id' => $study->getUserLessonId()])->all(); // список просмотренных уроков
+
+        return $this->render('index', 
+            [
+                'active' => $active,
+                'passed' => $passed,
+            ]
+        );
+    }
+
+
+    public function actionLesson($id)
+    {
+        $model = Lesson::findOne($id);
+
+        return $this->render('lesson', ['model' => $model]);
     }
 
     /**

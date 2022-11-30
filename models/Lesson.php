@@ -31,9 +31,22 @@ class Lesson extends \yii\db\ActiveRecord
         return [
             [['name', 'description', 'url'], 'required'],
             [['name', 'description', 'url', 'visible'], 'string', 'max' => 255],
-            [['visible'], 'unique'],
         ];
     }
+
+    public function getLessonId(){
+        return self::find()->select(['id'])->where(['visible' => 1])->column();
+    }
+
+    public function getPassedLesson(){
+        $study = new Study();
+
+        $all_lesson  = self::getLessonId(); // все активные уроки(ID)
+        $passed_lesson = $study->getUserLessonId(); // уроки просмотренные пользователем(ID)
+
+        return array_diff($all_lesson, $passed_lesson); ;
+    }
+
 
     /**
      * {@inheritdoc}

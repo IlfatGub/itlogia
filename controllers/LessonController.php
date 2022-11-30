@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\models\Lesson;
+use app\models\Study;
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -55,6 +57,44 @@ class LessonController extends Controller
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+
+    public function actionPassed($id){
+        $lesson = new Lesson();
+        $old = $lesson->getPassedLesson();
+
+        print_r($id);
+        echo "<br>";
+
+        print_r($old);
+        echo "<br>";
+
+        if(!$model = Study::findOne(['lesson_id' => $id, 'user_id' => Yii::$app->user->id])){
+            $new = new Study();
+            $new->lesson_id = $id;
+            $new->user_id = Yii::$app->user->id;
+            if($new->save()){
+                // return 'Просмотрен';
+            }
+        }else{
+            $model->delete();
+        }
+
+        print_r(array_search($id, $old));
+        echo "<br>";
+        $active_lesson =  $lesson->getPassedLesson();
+        print_r($active_lesson);
+        echo "<br>"; die();
+
+
+        if(array_key_exists(array_search($id, $old) + 1), $active_lesson)
+
+        if($active_lesson){
+            $model = Lesson::findOne(array_shift($active_lesson));
+            return $this->render('/site/lesson', ['model' => $model, 'message' => 'Вы успешно прошли урок '.Lesson::findOne($id)->name]);
+        }
+
     }
 
     /**
