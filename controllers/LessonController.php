@@ -60,6 +60,10 @@ class LessonController extends Controller
     }
 
 
+    /**
+     * Отмечаем урок
+     * Переходим на следующий
+     */
     public function actionPassed($id){
         $lesson = new Lesson();
         $old = array_values($lesson->getPassedLesson());
@@ -79,14 +83,17 @@ class LessonController extends Controller
             }
         }
 
-        $active_lesson = $lesson->getPassedLesson();
+        // не просмотренные уроки
+        $active_lesson = $lesson->getPassedLesson(); 
 
         $index = array_search($id, $old) + 1;
 
-
+        // Если нет не просмотренных уроков, переходим на начальную страницу
         if(!$active_lesson)
             return $this->redirect('/site/index');
 
+        // Переход на следующий урок
+        // Если текущий урок являеться послденим не просмотренным для курса, то переходим на начальный не просмотернный урок
         if(array_key_exists($index, $old)){
             $model = Lesson::findOne($old[$index]);
         }else{
