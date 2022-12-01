@@ -35,7 +35,6 @@ AppAsset::register($this);
         ],
     ]);
 
-
     if(Yii::$app->user->can('admin')){
         $items[]=['label' => 'Пользователи', 'url' => ['/user']];
 		$items[]=['label' => 'Уроки', 'url' => ['/lesson']];

@@ -14,7 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
     <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
-    <?= $form->field($model, 'role')->dropDownList(['100' => 'User', '200' => 'Admin']) ?>
     <?= $form->field($model, 'password')->passwordInput() ?>
 
     <div class="form-group">

@@ -27,7 +27,7 @@ class m221129_161855_create_lesson_table extends Migration
         ], $tableOptions);
 
 
-        for($i = 0; $i <= 10; $i++){
+        for($i = 1; $i <= 5; $i++){
             $this->insert('{{%lesson}}', 
             [
                 'name'=>'Lesson '. $i, 

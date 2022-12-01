@@ -89,9 +89,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        if(Yii::$app->user->can('admin'))
-            return $this->redirect('lesson/index');
-
         $lesson = new Lesson();
         $study = new Study();
 

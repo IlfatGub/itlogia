@@ -2,7 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\SignupForm;
 use app\models\User;
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -77,14 +79,20 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
-        $model = new User();
+        $model = new SignupForm();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post()) && $model->validate()) {
+                $user = new User();
+                $user->username = $model->username;
+                $user->email = $model->email;
+                $user->setPassword($model->password);
+                $user->generateAuthKey();
+                if($user->save()){
+                    $user->setUserRole('student', $user->id);
+                }
+                return $this->redirect(['view', 'id' => $user->id]);
             }
-        } else {
-            $model->loadDefaultValues();
         }
 
         return $this->render('create', [

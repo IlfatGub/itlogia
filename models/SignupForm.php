@@ -36,7 +36,7 @@ class SignupForm extends Model
     }
  
     /**
-     * Signs user up.
+     * Регистрация пользователя
      *
      * @return User|null the saved model or null if saving fails
      */
@@ -53,9 +53,7 @@ class SignupForm extends Model
         $user->generateAuthKey();
 
         if($user->save()){
-            $auth = Yii::$app->authManager;
-            $userRole = Yii::$app->authManager->getRole('student');
-            Yii::$app->authManager->assign($userRole, $user->id);
+            $user->setUserRole('student', $user->id);
             return $user;
         }
 
