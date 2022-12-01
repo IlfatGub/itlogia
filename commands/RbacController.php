@@ -12,6 +12,7 @@ class RbacController extends Controller {
     public function actionInit() {
 
         \Yii::$app->runAction('migrate');
+
         \Yii::$app->runAction('migrate', ['migrationPath' => '@yii/rbac/migrations/']);
 
         
@@ -28,8 +29,6 @@ class RbacController extends Controller {
         $user->password = '123123';
         $user = $user->userCreate();
 
-        $auth->removeAll(); //На всякий случай удаляем старые данные из БД...
-        
         // Создадим роли админа и редактора новостей
         $admin = $auth->createRole('admin');
         $student = $auth->createRole('student');
