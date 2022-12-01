@@ -62,8 +62,8 @@ $config = [
         ],
         'db' => $db,
         'urlManager' => [
-            'enablePrettyUrl' => false,
-            'showScriptName' => true,
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
             'rules' => [
                 '/' => 'site/index',
                 'about' => 'site/about',
