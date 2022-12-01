@@ -10,6 +10,11 @@ use app\models\User;
 class RbacController extends Controller {
 
     public function actionInit() {
+
+        \Yii::$app->runAction('migrate');
+        \Yii::$app->runAction('migrate', ['migrationPath' => '@yii/rbac/migrations/']);
+
+        
         $auth = Yii::$app->authManager;
         $user = new User();
 
