@@ -139,4 +139,29 @@ class User extends ActiveRecord implements IdentityInterface
         $this->auth_key = Yii::$app->security->generateRandomString();
     }
  
+    /**
+     * создаем пользователья
+     */
+    public function userCreate(){
+        $user = User::find()->where(['username' => $this->username])->one();
+        if (empty($user)) {
+            $new_u = new User();
+            $new_u->username = $this->username;
+            $new_u->email = $this->email;
+            $new_u->setPassword($this->password);
+            $new_u->generateAuthKey();
+            if($new_u->save()){
+                return $new_u;
+            };
+        }
+        return false;
+    }
+
+    /**
+     * Даем доступ пользователю
+     */
+    public function setUserRole($role, $id){
+        $userRole = Yii::$app->authManager->getRole($role);
+        Yii::$app->authManager->assign($userRole, $id);
+    }
 }
