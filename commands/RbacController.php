@@ -11,19 +11,17 @@ class RbacController extends Controller {
 
     public function actionInit() {
         $auth = Yii::$app->authManager;
-        
+        $user = new User();
 
-        $model = User::find()->where(['username' => 'admin'])->one();
-        if (empty($model)) {
-            $user = new User();
-            $user->username = 'admin';
-            $user->email = 'admin@yoursite.ru';
-            $user->setPassword('admin');
-            $user->generateAuthKey();
-            if ($user->save()) {
-                echo 'good';
-            }
-        }
+        $user->username = 'admin';
+        $user->email = 'admin@itlogia.ru';
+        $user->password = 'admin';
+        $adm = $user->userCreate();
+        
+        $user->username = 'user1';
+        $user->email = 'user1@itlogia.ru';
+        $user->password = '123123';
+        $user = $user->userCreate();
 
         $auth->removeAll(); //На всякий случай удаляем старые данные из БД...
         
@@ -36,6 +34,7 @@ class RbacController extends Controller {
         $auth->add($student);
         
         // Назначаем роль admin
-        $auth->assign($admin, $user->id); 
+        $auth->assign($admin, $adm->id); 
+        $auth->assign($student, $user->id); 
     }
 }
