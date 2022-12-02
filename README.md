@@ -11,6 +11,7 @@ yii rbac/init
 ~~~
 
 
+
 # Vhost
 ~~~
 <VirtualHost 127.0.0.1:80>
@@ -22,3 +23,11 @@ yii rbac/init
     CustomLog "/var/log/itlogia/logs/access.log" common
 </VirtualHost>
 ~~~
+
+
+# Databases
+user – таблица с пользователями
+
+lesson – таблица с уроками
+
+study – таблица с пройденными уроками пользователя
