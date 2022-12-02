@@ -5,7 +5,7 @@
 # создать БД
 create DATABASE itlogia
 ~~~
-### terminal
+### bash
 ~~~
 # Устанавливаем пакеты 
 composer update
