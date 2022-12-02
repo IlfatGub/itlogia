@@ -22,7 +22,7 @@ $this->title = 'My Yii Application';
     </div>
 <?php else: ?>
     <?php if(!$active):?>
-        <h2 class="alert alert-success text-center">Поздравялем! Вы полностью прошли обучение!</h2>
+        <h2 class="alert alert-success text-center">Поздравляем! Вы полностью прошли обучение!</h2>
     <?php endif ?>
 
     <?php if($all):?>
