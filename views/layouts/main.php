@@ -28,7 +28,7 @@ AppAsset::register($this);
 <header>
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => 'ItLogia',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
@@ -39,8 +39,8 @@ AppAsset::register($this);
         $items[]=['label' => 'Пользователи', 'url' => ['/user']];
 		$items[]=['label' => 'Уроки', 'url' => ['/lesson']];
 	}	if(Yii::$app->user->isGuest){
-		$items[]=['label' => 'Login', 'url' => ['/site/login']];
-		$items[]=['label' => 'Signup', 'url' => ['/site/signup']];
+		$items[]=['label' => 'Войти', 'url' => ['/site/login']];
+		$items[]=['label' => 'Зарегестрироваться', 'url' => ['/site/signup']];
 	}else{
 		$items[]='<li>'
                 . Html::beginForm(['/site/logout'], 'post')

@@ -26,7 +26,7 @@ class RbacController extends Controller {
         
         $user->username = 'user1';
         $user->email = 'user1@itlogia.ru';
-        $user->password = '123123';
+        $user->password = '321qweR';
         $user = $user->userCreate();
 
         // Создадим роли админа и редактора новостей
