@@ -12,8 +12,8 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-    <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
+    <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'autocomplete'=> 'off']) ?>
+    <?= $form->field($model, 'email')->textInput(['autofocus' => true, 'autocomplete'=> 'off']) ?>
     <?= $form->field($model, 'password')->passwordInput() ?>
 
     <div class="form-group">
