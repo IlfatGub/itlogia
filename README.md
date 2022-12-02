@@ -1,14 +1,14 @@
-### Install
+# Install
 
-# sql
+### sql
 create DATABASE itlogia
 
-# terminal
+### terminal
 composer update
 yii rbac/init
 
 
-### Vhost
+# Vhost
 
 <VirtualHost 127.0.0.1:80>
     ServerName itlogia
