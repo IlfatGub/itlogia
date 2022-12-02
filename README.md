@@ -4,8 +4,10 @@
 create DATABASE itlogia
 
 ### terminal
+~~~
 composer update
 yii rbac/init
+~~~
 
 
 # Vhost
