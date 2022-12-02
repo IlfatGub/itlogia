@@ -3,8 +3,8 @@
 return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=itlogia',
-    'username' => 'root',
-    'password' => '',
+    'username' => 'itlogia',
+    'password' => '/i4Y5oIZ@n9OTC[h',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)
